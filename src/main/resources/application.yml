@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: chouf
+
+  datasource:
+    url: jdbc:postgresql://${DB_CHOUF_HOST:localhost}:5432/buyer
+    username: ${DB_CHOUF_USER:chouf}
+    password: ${DB_CHOUF_PASSWORD:chouf}
+
+  kafka:
+    bootstrap-servers: "${INFRA_KAFKA_BROKERS:localhost:9092}"
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 3
+      acks: 1
+      properties:
+        spring.json.add.type.headers: true
+        request.timeout.ms: 3000
+        delivery.timeout.ms: 3000
+    consumer:
+      group-id: "chouf-consumer"
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.craziestate.alerts.event"
+
+topics:
+  buyer:
+    offerPublished: "buyer.offerPublished.event"
+    alertSend: "buyer.alertSend.event"
+
+logging:
+  level:
+    com.craziestate.alerts.infra: DEBUG
+    org.apache.kafka.clients: WARN
