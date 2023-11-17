@@ -67,7 +67,7 @@ c.c.a.i.event.OfferPublishedConsumer     : Publishing Alert Send event AlertSend
 
 ![logo](/doc/architecture.png)
 
-This project enables to decide if user notifications should be send when an offer is published.
+This project enables to decide if user notifications should be sent when an offer is published.
 We decided to create an event based system that would be componed of : 
 - an alert finder, whose goal is to find which users should be notify when an offer is published.
 - an alert sender, whose goal is to send the notifications, depending on the channels available (email, sms, etc).
