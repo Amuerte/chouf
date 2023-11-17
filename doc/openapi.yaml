@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /api/v1/offer/{offerId}/publish:
+    post:
+      tags:
+      - offer-controller
+      operationId: alerts
+      parameters:
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+  /api/v1/offer:
+    get:
+      tags:
+      - offer-controller
+      operationId: offers
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Offer'
+  /api/v1/alert:
+    get:
+      tags:
+      - alert-finder-controller
+      operationId: alerts_1
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alert'
+components:
+  schemas:
+    Offer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        offerId:
+          type: string
+          format: uuid
+        sellerId:
+          type: integer
+          format: int32
+        estateType:
+          type: string
+          enum:
+          - FLAT
+          - HOUSE
+        countryCode:
+          type: string
+        regionCode:
+          type: string
+        cityCode:
+          type: string
+        price:
+          type: integer
+          format: int32
+        floorArea:
+          type: integer
+          format: int32
+        landArea:
+          type: integer
+          format: int32
+        rooms:
+          type: integer
+          format: int32
+        bedrooms:
+          type: integer
+          format: int32
+        bathrooms:
+          type: integer
+          format: int32
+        stairs:
+          type: boolean
+        parking:
+          type: boolean
+        cellar:
+          type: boolean
+        version:
+          type: integer
+          format: int32
+        creationTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+    Alert:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        alertId:
+          type: string
+          format: uuid
+        customerId:
+          type: integer
+          format: int32
+        estateYype:
+          type: string
+          enum:
+          - FLAT
+          - HOUSE
+        countryCode:
+          type: string
+        regionCode:
+          type: string
+        cityCode:
+          type: string
+        criteria:
+          type: string
+        active:
+          type: boolean
+        creationTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
