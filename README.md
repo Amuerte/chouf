@@ -35,7 +35,7 @@ The database is initialized with test data located in the `.docker` directory
 
 ### Using the API
 
-The application exposes an API (see [OpenAPI definition](/doc/openapi.yaml)) that enables to retreive test datas from the database
+The application exposes an API (see [OpenAPI definition](/doc/openapi.yaml)) that enables to retreive test data from the database
 and to simulate the publication of an `Offer published` event.
 
 #### Viewing data
